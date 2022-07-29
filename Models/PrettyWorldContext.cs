@@ -16,6 +16,7 @@ namespace PrettyWorld.Models
         {
         }
 
+        public virtual DbSet<Movie> Movies { get; set; } = null!;
         public virtual DbSet<MyProfile> MyProfiles { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,6 +32,31 @@ namespace PrettyWorld.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Movie>(entity =>
+            {
+                entity.HasKey(e => e.MovieName);
+
+                entity.Property(e => e.MovieName).HasMaxLength(50);
+
+                entity.Property(e => e.Director).HasMaxLength(255);
+
+                entity.Property(e => e.MovieId).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.MovieType)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rating)
+                    .HasColumnType("decimal(2, 1)")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Trailer)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.WatchDate).HasColumnType("date");
+            });
+
             modelBuilder.Entity<MyProfile>(entity =>
             {
                 entity.ToTable("MyProfile");
@@ -69,6 +95,8 @@ namespace PrettyWorld.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Introduction).HasMaxLength(500);
+
+                entity.Property(e => e.LiveIn).HasMaxLength(50);
 
                 entity.Property(e => e.Mobile)
                     .HasMaxLength(15)

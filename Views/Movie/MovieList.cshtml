@@ -1,0 +1,160 @@
+﻿@model PaginatedList<PrettyWorld.Models.Movie>
+
+@{
+    ViewData["Title"] = "MovieList";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<h1>觀影心得</h1>
+<style>
+    .searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+
+</style>
+<p>
+    <button type="button" class="btn btn-outline-info" asp-action="Create">新增影評</button>
+</p>
+
+
+<form asp-action="MovieList" method="get">
+          <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="SearchString" placeholder="電影名稱..." value="@ViewData["CurrentFilter"]">
+          <a href="#" onclick="this.form.submit()" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+      </div>
+</form>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="MovieList" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">電影名稱</a>
+            </th>
+            <th>
+                <a asp-action="MovieList" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">觀賞日期</a>
+            </th>
+            <th>
+                電影類型
+            </th>
+            <th>
+                預告片
+            </th>
+            <th>
+                導演
+            </th>
+            <th>
+                卡司
+            </th>
+            <th>
+                影評
+            </th>
+            <th>
+                個人評價
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WatchDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trailer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Director)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TopCast)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Review)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)/10.0
+                </td>
+                <td>
+                    <button type="button" asp-action="Details" asp-route-id="@item.MovieName" class="btn btn-outline-dark">查看</button> |
+                    <button type="button" asp-action="Edit" asp-route-id="@item.MovieName" class="btn btn-outline-primary">編輯</button> |
+                    <button type="button" asp-action="Delete" asp-route-id="@item.MovieName" class="btn btn-outline-danger">刪除</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<button asp-action="MovieList" type="button" class="btn btn-outline-success">所有影評</button>
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    上一頁
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    下一頁
+</a>

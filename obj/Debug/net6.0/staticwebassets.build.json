@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bJFWBZ0Jzkf4gl8rJ0jmV91HwA2Lhi7b2KVPVNihjB8=",
+  "Hash": "iTefS5sRHSVRYtu7Yk4T1dtyS9ih6RFv1iIpnvrTiDQ=",
   "Source": "PrettyWorld",
   "BasePath": "_content/PrettyWorld",
   "Mode": "Default",
@@ -51,40 +51,6 @@
       "OriginalItemSpec": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\PrettyWorld.bundle.scp.css"
     },
     {
-      "Identity": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\css\\footers.css",
-      "SourceId": "PrettyWorld",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\",
-      "BasePath": "_content/PrettyWorld",
-      "RelativePath": "css/footers.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\footers.css"
-    },
-    {
-      "Identity": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\css\\headers.css",
-      "SourceId": "PrettyWorld",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\",
-      "BasePath": "_content/PrettyWorld",
-      "RelativePath": "css/headers.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\headers.css"
-    },
-    {
       "Identity": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\css\\site.css",
       "SourceId": "PrettyWorld",
       "SourceType": "Discovered",
@@ -117,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\img\\RS.png",
+      "SourceId": "PrettyWorld",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\",
+      "BasePath": "_content/PrettyWorld",
+      "RelativePath": "img/RS.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\RS.png"
     },
     {
       "Identity": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\js\\site.js",
