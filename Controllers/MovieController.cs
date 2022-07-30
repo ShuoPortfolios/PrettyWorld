@@ -67,13 +67,36 @@ namespace PrettyWorld.Controllers
         }
 
         // GET: MovieController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult MovieDetails(string movieName)
         {
-            return View();
+            if (string.IsNullOrEmpty(movieName))
+            {
+                return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
+            }
+
+            // 第一種寫法：========================================
+            IQueryable<Movie> ListOne = from _userTable in _db.Movies
+                                            where _userTable.MovieName == movieName   
+                                            select _userTable;
+            //也可以寫成下面這樣：
+            //var ListOne = from m in _db.UserTables
+            //              where m.UserId == id
+            //              select m;
+
+            if (ListOne == null)
+            {    // 找不到這一筆記錄
+                return NotFound();
+            }
+            else
+            {
+                return View(ListOne.FirstOrDefault());
+            }
+
         }
 
         // GET: MovieController/Create
-        public ActionResult Create()
+        public ActionResult MovieCreate()
         {
             return View();
         }
@@ -81,7 +104,7 @@ namespace PrettyWorld.Controllers
         // POST: MovieController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult MovieCreate(IFormCollection collection)
         {
             try
             {

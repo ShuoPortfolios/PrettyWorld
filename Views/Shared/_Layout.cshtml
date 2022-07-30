@@ -40,7 +40,7 @@
                     <div class="col-12">
                         <nav class="navbar navbar-expand-md navbar-light">
 
-                            <a class="navbar-brand" href="https://front.codes/" target="_blank"><img src="~/img/RS.png" alt=""></a>
+                            <a class="navbar-brand" href="/" target="_blank"><img src="~/img/RS.png" alt=""></a>
 
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -92,18 +92,12 @@
     </header>
 
     <!-- 自訂的Header End-->
-    <div class="section full-height">
-        <div class="absolute-center">
-            <div class="section">
-                <div class="container">
-                    <main role="main" class="pb-3">
-                        @RenderBody()
-                    </main>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    <div class="p-3 mt-5 container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
 
     <!-- 自訂的footer Start-->
 

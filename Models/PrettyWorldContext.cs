@@ -23,10 +23,8 @@ namespace PrettyWorld.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                /*
-                #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=localhost;Database=PrettyWorld;Trusted_Connection=True;MultipleActiveResultSets=true");
-                */
             }
         }
 
@@ -38,17 +36,31 @@ namespace PrettyWorld.Models
 
                 entity.Property(e => e.MovieName).HasMaxLength(50);
 
+                entity.Property(e => e.Acting).HasDefaultValueSql("((0))");
+
                 entity.Property(e => e.Director).HasMaxLength(255);
 
+                entity.Property(e => e.Immersion).HasDefaultValueSql("((0))");
+
                 entity.Property(e => e.MovieId).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.MoviePicture)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MovieType)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Plot).HasDefaultValueSql("((0))");
+
                 entity.Property(e => e.Rating)
                     .HasColumnType("decimal(2, 1)")
                     .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Scene).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Sound).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Trailer)
                     .HasMaxLength(255)

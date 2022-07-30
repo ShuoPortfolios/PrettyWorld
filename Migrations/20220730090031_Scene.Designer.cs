@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrettyWorld.Models;
 
@@ -11,9 +12,10 @@ using PrettyWorld.Models;
 namespace PrettyWorld.Migrations
 {
     [DbContext(typeof(PrettyWorldContext))]
-    partial class PrettyWorldContextModelSnapshot : ModelSnapshot
+    [Migration("20220730090031_Scene")]
+    partial class Scene
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,15 +30,9 @@ namespace PrettyWorld.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("Acting")
-                        .HasColumnType("int");
-
                     b.Property<string>("Director")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<int?>("Immersion")
-                        .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
@@ -54,9 +50,6 @@ namespace PrettyWorld.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("Plot")
-                        .HasColumnType("int");
-
                     b.Property<decimal?>("Rating")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(2,1)")
@@ -64,12 +57,6 @@ namespace PrettyWorld.Migrations
 
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Scene")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Sound")
-                        .HasColumnType("int");
 
                     b.Property<string>("TopCast")
                         .HasColumnType("nvarchar(max)");
