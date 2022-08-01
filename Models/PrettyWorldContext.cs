@@ -17,14 +17,17 @@ namespace PrettyWorld.Models
         }
 
         public virtual DbSet<Movie> Movies { get; set; } = null!;
+        public virtual DbSet<MovieTypeList> MovieTypeLists { get; set; } = null!;
         public virtual DbSet<MyProfile> MyProfiles { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                /*
+                #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=localhost;Database=PrettyWorld;Trusted_Connection=True;MultipleActiveResultSets=true");
+                */
             }
         }
 
@@ -67,6 +70,15 @@ namespace PrettyWorld.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.WatchDate).HasColumnType("date");
+            });
+
+            modelBuilder.Entity<MovieTypeList>(entity =>
+            {
+                entity.HasKey(e => e.TypeId);
+
+                entity.ToTable("MovieTypeList");
+
+                entity.Property(e => e.TypeName).HasMaxLength(10);
             });
 
             modelBuilder.Entity<MyProfile>(entity =>

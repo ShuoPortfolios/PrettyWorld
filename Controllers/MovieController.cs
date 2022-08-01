@@ -98,22 +98,44 @@ namespace PrettyWorld.Controllers
         // GET: MovieController/Create
         public ActionResult MovieCreate()
         {
+
+            List<MovieTypeList> tl = new();
+            tl = (from t in _db.MovieTypeLists select t).ToList();
+            tl.Insert(0, new MovieTypeList { TypeId = 0, TypeName = "選擇電影類型" });
+
+            ViewBag.MovieTypeLists = tl;    
             return View();
         }
 
-        // POST: MovieController/Create
-        [HttpPost]
+        [HttpPost, ActionName("MovieCreate")]
         [ValidateAntiForgeryToken]
-        public ActionResult MovieCreate(IFormCollection collection)
+        public ActionResult MovieCreate([Bind("MovieName, WatchDate, MovieType, MoviePicture, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] Movie _movie)
         {
-            try
+            if (_movie == null)
             {
-                return RedirectToAction(nameof(Index));
+                return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
             }
-            catch
+
+            if (ModelState.IsValid)
             {
-                return View();
+                try
+                {
+                    _db.Entry(_movie).State = EntityState.Added;  // 確認被修改（狀態：Modified）
+                    _db.SaveChanges();
+
+                    return RedirectToAction(nameof(MovieList));  // 提升程式的維護性，常用在"字串"上。
+                }
+                catch
+                {
+                    return View(_movie);  // 若沒有新增成功，則列出原本畫面
+                }
             }
+            else
+            {
+                return View(_movie);  // 若沒有新增成功，則列出原本畫面
+            }
+
+
         }
 
         // GET: MovieController/Edit/5
