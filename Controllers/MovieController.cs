@@ -76,9 +76,9 @@ namespace PrettyWorld.Controllers
             }
 
             // 第一種寫法：========================================
-            IQueryable<Movie> ListOne = from _userTable in _db.Movies
-                                            where _userTable.MovieName == movieName   
-                                            select _userTable;
+            IQueryable<Movie> ListOne = from _movieList in _db.Movies
+                                            where _movieList.MovieName == movieName   
+                                            select _movieList;
             //也可以寫成下面這樣：
             //var ListOne = from m in _db.UserTables
             //              where m.UserId == id
@@ -109,7 +109,7 @@ namespace PrettyWorld.Controllers
 
         [HttpPost, ActionName("MovieCreate")]
         [ValidateAntiForgeryToken]
-        public ActionResult MovieCreate([Bind("MovieName, WatchDate, MovieType, MoviePicture, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] Movie _movie)
+        public async Task<IActionResult> MovieCreate([Bind("MovieName, WatchDate, MovieType, MoviePicture, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] Movie _movie)
         {
             if (_movie == null)
             {
@@ -120,8 +120,8 @@ namespace PrettyWorld.Controllers
             {
                 try
                 {
-                    _db.Entry(_movie).State = EntityState.Added;  // 確認被修改（狀態：Modified）
-                    _db.SaveChanges();
+                    _db.Entry(_movie).State = EntityState.Added;
+                    await _db.SaveChangesAsync();
 
                     return RedirectToAction(nameof(MovieList));  // 提升程式的維護性，常用在"字串"上。
                 }
@@ -138,46 +138,152 @@ namespace PrettyWorld.Controllers
 
         }
 
-        // GET: MovieController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult MovieEdit(string movieName)
         {
-            return View();
+            if (string.IsNullOrEmpty(movieName))
+            {
+                return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
+            }
+
+            IQueryable<Movie> movieData = from _movieList in _db.Movies
+                                        where _movieList.MovieName == movieName
+                                        select _movieList;
+
+            List<MovieTypeList> tl = new();
+            tl = (from t in _db.MovieTypeLists select t).ToList();
+            tl.Insert(0, new MovieTypeList { TypeId = 0, TypeName = "選擇電影類型" });
+
+            ViewBag.MovieTypeLists = tl;
+
+
+            if (movieData == null)
+            {    // 找不到這一筆記錄
+                return NotFound();
+            }
+            else
+            {
+                return View(movieData.FirstOrDefault());
+            }
+
         }
 
-        // POST: MovieController/Edit/5
-        [HttpPost]
+        [HttpPost, ActionName("MovieEdit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> MovieEdit([Bind("MovieName, WatchDate, MovieType, MoviePicture, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] Movie _movie)
         {
-            try
+            if (_movie == null)
             {
-                return RedirectToAction(nameof(Index));
+                return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
             }
-            catch
+
+            ModelState.Remove("MovieName");
+            if (ModelState.IsValid)
             {
-                return View();
+                var movie = new Movie()
+                {
+                    MovieId = _movie.MovieId,
+                    MovieName = _movie.MovieName,
+                    WatchDate = _movie.WatchDate,
+                    MovieType = _movie.MovieType,   
+                    MoviePicture = _movie.MoviePicture, 
+                    Trailer = _movie.Trailer,   
+                    Director = _movie.Director, 
+                    TopCast = _movie.TopCast,
+                    Review = _movie.Review,
+                    Rating = _movie.Rating,
+                    Plot = _movie.Plot, 
+                    Scene = _movie.Scene,
+                    Sound = _movie.Sound,
+                    Immersion = _movie.Immersion,
+                    Acting = _movie.Acting
+                };
+
+                //只修改部分欄位
+                _db.Movies.Attach(movie);
+                _db.Entry(movie).Property(m => m.WatchDate).IsModified = true;
+                _db.Entry(movie).Property(m => m.MovieType).IsModified = true;
+                _db.Entry(movie).Property(m => m.MoviePicture).IsModified = true;
+                _db.Entry(movie).Property(m => m.Trailer).IsModified = true;
+                _db.Entry(movie).Property(m => m.Director).IsModified = true;
+                _db.Entry(movie).Property(m => m.TopCast).IsModified = true;
+                _db.Entry(movie).Property(m => m.Review).IsModified = true;
+                _db.Entry(movie).Property(m => m.Rating).IsModified = true;
+                _db.Entry(movie).Property(m => m.Plot).IsModified = true;
+                _db.Entry(movie).Property(m => m.Scene).IsModified = true;
+                _db.Entry(movie).Property(m => m.Sound).IsModified = true;
+                _db.Entry(movie).Property(m => m.Immersion).IsModified = true;
+                _db.Entry(movie).Property(m => m.Acting).IsModified = true;
+
+                //修改所有欄位
+                //_db.Entry(_myProfile).State = EntityState.Modified;  // 確認被修改（狀態：Modified）
+
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction(nameof(MovieList));
+            }
+            else
+            {
+                return Content(" *** 更新失敗！！*** ");
             }
         }
 
         // GET: MovieController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult MovieDelete(string movieName)
         {
-            return View();
+            if (string.IsNullOrEmpty(movieName))
+            {
+                return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
+            }
+
+            // 第一種寫法：========================================
+            IQueryable<Movie> ListOne = from _movieList in _db.Movies
+                                        where _movieList.MovieName == movieName
+                                        select _movieList;
+            //也可以寫成下面這樣：
+            //var ListOne = from m in _db.UserTables
+            //              where m.UserId == id
+            //              select m;
+
+            if (ListOne == null)
+            {    // 找不到這一筆記錄
+                return NotFound();
+            }
+            else
+            {
+                return View(ListOne.FirstOrDefault());
+            }
         }
 
         // POST: MovieController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("MovieDelete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> MovieDelete([Bind("MovieName")] Movie _movie)
         {
-            try
+            if (_movie == null)
             {
-                return RedirectToAction(nameof(Index));
+                return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
             }
-            catch
+
+            if (ModelState.IsValid)
             {
-                return View();
+                _db.Entry(_movie).State = EntityState.Deleted;  // 確認被修改（狀態：Modified）
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction(nameof(MovieList));  // 提升程式的維護性，常用在"字串"上。
+            }
+            else
+            {
+                ModelState.AddModelError("1", "刪除失敗");
+                //return View(_userTable);  // 若沒有新增成功，則列出原本畫面
+                return Content(" *** 刪除失敗！！*** ");
             }
         }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
     }
 }

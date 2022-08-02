@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "8eMAG02UEwq2hpI3Q+lC2AYi4yqFThI4ojKHmJXdHPfVWEpg2g8tKqSOBXLVLv2jxcwsE6bqfPwr3QUHz95ckQ==",
+  "dgSpecHash": "XxjBlUriLH8yHVl8/ZMbf5ZAPzbvVCH40CxcdPKSy9REk/of63InRdhzX9ETmu6vSi4UgX1dq25TL46ejZuxPA==",
   "success": true,
   "projectFilePath": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\PrettyWorld.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jiyeo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\jiyeo\\.nuget\\packages\\imgur.api\\5.0.0\\imgur.api.5.0.0.nupkg.sha512",
     "C:\\Users\\jiyeo\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\jiyeo\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\jiyeo\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",

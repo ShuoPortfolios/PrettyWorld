@@ -112,8 +112,8 @@
                 </td>
                 <td>
                     <a type="button" asp-action="MovieDetails" asp-route-movieName="@item.MovieName" class="btn btn-outline-dark">查看</a> |
-                    <a type="button" asp-action="Edit" asp-route-id="@item.MovieName" class="btn btn-outline-primary">編輯</a> |
-                    <a type="button" asp-action="Delete" asp-route-id="@item.MovieName" class="btn btn-outline-danger">刪除</a>
+                    <a type="button" asp-action="MovieEdit" asp-route-movieName="@item.MovieName" class="btn btn-outline-primary">編輯</a> |
+                    <a type="button" asp-action="MovieDelete" asp-route-movieName="@item.MovieName" class="btn btn-outline-danger">刪除</a>
                 </td>
             </tr>
         }
@@ -131,7 +131,7 @@
             <a asp-action="MovieList" type="button" class="btn btn-outline-success">所有影評</a>
         </div>
         <div class="col-1">
-            <a asp-action="Index"
+            <a asp-action="MovieList"
                asp-route-sortOrder="@ViewData["CurrentSort"]"
                asp-route-pageNumber="@(Model.PageIndex - 1)"
                asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -140,7 +140,7 @@
             </a>
         </div>
         <div class="col-1">
-            <a asp-action="Index"
+            <a asp-action="MovieList"
                asp-route-sortOrder="@ViewData["CurrentSort"]"
                asp-route-pageNumber="@(Model.PageIndex + 1)"
                asp-route-currentFilter="@ViewData["CurrentFilter"]"

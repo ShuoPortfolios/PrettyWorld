@@ -31,8 +31,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieDelete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieList.cshtml]
