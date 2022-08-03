@@ -1,4 +1,4 @@
-﻿@model PrettyWorld.Models.Movie
+﻿@model PrettyWorld.ViewModel.MovieViewModel
 
 @{
     ViewData["Title"] = "MovieCreate";
@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="container">
-        <form asp-action="MovieCreate">
+        <form asp-action="MovieCreate" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="main-body">
                 <div class="row gutters-sm">

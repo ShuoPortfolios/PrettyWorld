@@ -23,12 +23,10 @@
                     <div class="col-md-4">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img src="/MoviePictures/@Html.DisplayFor(model => model.MoviePicture)" alt="MoviePicrture" class="rounded" width="250">
+                                </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                        <img src="@Html.DisplayFor(model => model.MoviePicture)" alt="MoviePicrture" class="rounded" width="250">
-                                        <input asp-for="MoviePicture" class="form-control" type="file" id="formFile">
-                                        <span asp-validation-for="MoviePicture" class="text-danger"></span>
-                                    </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                         <h6 class="mb-0">
                                             <label asp-for="MovieName" class="control-label">電影名稱</label>
@@ -36,7 +34,7 @@
                                         <input asp-for="MovieName" class="form-control" readonly/>
                                         <span asp-validation-for="MovieName" class="text-danger"></span>
                                     </li>
-                                </ul>
+                                </ul>                                
                             </div>
                         </div>
 
@@ -148,7 +146,7 @@
                         <div class="card mb-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <textarea asp-for="Review" class="form-control" rows="30" placeholder="填寫影評"></textarea>
+                                    <textarea asp-for="Review" class="form-control white-space: pre-line" rows="30" placeholder="填寫影評"></textarea>
                                     <span asp-validation-for="Review" class="text-danger"></span>
                                 </div>
                             </div>

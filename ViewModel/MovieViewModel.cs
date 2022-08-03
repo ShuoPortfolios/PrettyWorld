@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PrettyWorld.ViewModel;
 
-namespace PrettyWorld.Models
+namespace PrettyWorld.ViewModel
 {
-    public partial class Movie
+    public class MovieViewModel
     {
         public int MovieId { get; set; }
         public string MovieName { get; set; } = null!;
@@ -15,7 +15,7 @@ namespace PrettyWorld.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime WatchDate { get; set; }
         public string? MovieType { get; set; }
-        public string? MoviePicture { get; set; }
+        public IFormFile MoviePicture { get; set; } = null!;
         public string? Trailer { get; set; }
         public string? Director { get; set; }
         public string? TopCast { get; set; }

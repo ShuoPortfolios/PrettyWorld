@@ -2,22 +2,48 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PrettyWorld.Models;
+using PrettyWorld.ViewModel;
 using System.Diagnostics;
-
 
 namespace PrettyWorld.Controllers
 {
+    public static class Extensions
+    {
+        public static string Filter(this string str, List<char> charsToRemove)
+        {
+            foreach (char c in charsToRemove)
+            {
+                str = str.Replace(c.ToString(), String.Empty);
+            }
+
+            return str;
+        }
+    }
+
     public class MovieController : Controller
     {
         private readonly ILogger<MovieController> _logger;
 
         private readonly PrettyWorldContext _db = new();
 
-        public MovieController(ILogger<MovieController> logger, PrettyWorldContext context)
+        private readonly IWebHostEnvironment WebHostEnvironment;
+
+        public MovieController(ILogger<MovieController> logger, PrettyWorldContext context, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
             _db = context;
+            WebHostEnvironment = webHostEnvironment;
         }
+
+        private string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                      + "_"
+                      + Guid.NewGuid().ToString().Substring(0, 4)
+                      + Path.GetExtension(fileName);
+        }
+
         // GET: MovieController
         public async Task<IActionResult> MovieList(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
@@ -76,21 +102,23 @@ namespace PrettyWorld.Controllers
             }
 
             // 第一種寫法：========================================
-            IQueryable<Movie> ListOne = from _movieList in _db.Movies
+            IQueryable<Movie> movieData = from _movieList in _db.Movies
                                             where _movieList.MovieName == movieName   
                                             select _movieList;
+
+
             //也可以寫成下面這樣：
             //var ListOne = from m in _db.UserTables
             //              where m.UserId == id
             //              select m;
 
-            if (ListOne == null)
+            if (movieData == null)
             {    // 找不到這一筆記錄
                 return NotFound();
             }
             else
             {
-                return View(ListOne.FirstOrDefault());
+                return View(movieData.FirstOrDefault());
             }
 
         }
@@ -109,33 +137,71 @@ namespace PrettyWorld.Controllers
 
         [HttpPost, ActionName("MovieCreate")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MovieCreate([Bind("MovieName, WatchDate, MovieType, MoviePicture, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] Movie _movie)
+        public async Task<IActionResult> MovieCreate([Bind("MovieName, WatchDate, MovieType, MoviePicture, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] MovieViewModel movieVM)
         {
-            if (_movie == null)
+            
+            if (movieVM == null)
             {
                 return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
             }
 
             if (ModelState.IsValid)
             {
+                string stringFileName = UploadFile(movieVM);
+                var movie = new Movie
+                {
+                    MovieName = movieVM.MovieName,
+                    WatchDate = movieVM.WatchDate,
+                    MovieType = movieVM.MovieType,
+                    MoviePicture = stringFileName,
+                    Trailer = movieVM.Trailer,
+                    Director = movieVM.Director,
+                    TopCast = movieVM.TopCast,
+                    Review = movieVM.Review,
+                    Rating = movieVM.Rating,
+                    Plot = movieVM.Plot,
+                    Scene = movieVM.Scene,
+                    Sound = movieVM.Sound,
+                    Immersion = movieVM.Immersion,
+                    Acting = movieVM.Acting
+                };
+
                 try
                 {
-                    _db.Entry(_movie).State = EntityState.Added;
+                    _db.Entry(movie).State = EntityState.Added;
                     await _db.SaveChangesAsync();
 
                     return RedirectToAction(nameof(MovieList));  // 提升程式的維護性，常用在"字串"上。
                 }
                 catch
                 {
-                    return View(_movie);  // 若沒有新增成功，則列出原本畫面
+                    return View(movieVM);  // 若沒有新增成功，則列出原本畫面
                 }
             }
             else
             {
-                return View(_movie);  // 若沒有新增成功，則列出原本畫面
+                return View(movieVM);  // 若沒有新增成功，則列出原本畫面
+            }
+        }
+
+        private string UploadFile(MovieViewModel movieVM)
+        {
+            string fileName = string.Empty;
+            if(movieVM.MovieName != null)
+            {
+                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "MoviePictures");
+
+                List<char> charsToRemove = new List<char>() { '/', '\'', ':', '*', '?', '"', '<', '>', '|', '@', '_', ',', '.' };
+                fileName = movieVM.MovieName.Filter(charsToRemove) + ".jpg";
+
+                string filePath = Path.Combine(uploadDir, fileName);    
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    movieVM.MoviePicture.CopyTo(fileStream);   
+                }
             }
 
-
+            return fileName;
         }
 
         public ActionResult MovieEdit(string movieName)
@@ -148,6 +214,7 @@ namespace PrettyWorld.Controllers
             IQueryable<Movie> movieData = from _movieList in _db.Movies
                                         where _movieList.MovieName == movieName
                                         select _movieList;
+
 
             List<MovieTypeList> tl = new();
             tl = (from t in _db.MovieTypeLists select t).ToList();
@@ -169,7 +236,7 @@ namespace PrettyWorld.Controllers
 
         [HttpPost, ActionName("MovieEdit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MovieEdit([Bind("MovieName, WatchDate, MovieType, MoviePicture, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] Movie _movie)
+        public async Task<IActionResult> MovieEdit([Bind("MovieName, WatchDate, MovieType, Trailer, Director, TopCast, Review, Rating, Plot, Scene, Sound, Immersion, Acting")] Movie _movie)
         {
             if (_movie == null)
             {
@@ -177,6 +244,8 @@ namespace PrettyWorld.Controllers
             }
 
             ModelState.Remove("MovieName");
+            ModelState.Remove("MoviePicture");
+
             if (ModelState.IsValid)
             {
                 var movie = new Movie()
@@ -185,11 +254,10 @@ namespace PrettyWorld.Controllers
                     MovieName = _movie.MovieName,
                     WatchDate = _movie.WatchDate,
                     MovieType = _movie.MovieType,   
-                    MoviePicture = _movie.MoviePicture, 
                     Trailer = _movie.Trailer,   
                     Director = _movie.Director, 
                     TopCast = _movie.TopCast,
-                    Review = _movie.Review,
+                    Review = _movie.Review.Replace("    ", "<br /><br />"),
                     Rating = _movie.Rating,
                     Plot = _movie.Plot, 
                     Scene = _movie.Scene,
@@ -202,7 +270,6 @@ namespace PrettyWorld.Controllers
                 _db.Movies.Attach(movie);
                 _db.Entry(movie).Property(m => m.WatchDate).IsModified = true;
                 _db.Entry(movie).Property(m => m.MovieType).IsModified = true;
-                _db.Entry(movie).Property(m => m.MoviePicture).IsModified = true;
                 _db.Entry(movie).Property(m => m.Trailer).IsModified = true;
                 _db.Entry(movie).Property(m => m.Director).IsModified = true;
                 _db.Entry(movie).Property(m => m.TopCast).IsModified = true;
