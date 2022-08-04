@@ -27,8 +27,8 @@
                                     <h4>@Html.DisplayFor(model => model.FullName)</h4>
                                     <p class="text-secondary mb-1">@Html.DisplayFor(model => model.Introduction)</p>
                                     <p class="text-muted font-size-sm">@Html.DisplayFor(model => model.LiveIn)</p>
-                                    <button class="btn btn-primary">Follow</button>
-                                    <button class="btn btn-outline-primary">Message</button>
+                                    <button class="btn btn-primary">追蹤我</button>
+                                    <button class="btn btn-outline-primary">聯繫我</button>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                 <input type="hidden" asp-for="Id" />
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label asp-for="FullName" class="mb-0"></label>
+                                        <label asp-for="FullName" class="mb-0">全名</label>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input asp-for="FullName" class="col-sm-9 text-secondary" />
@@ -76,7 +76,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label asp-for="Email" class="mb-0"></label>
+                                        <label asp-for="Email" class="mb-0">Email</label>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input asp-for="Email" class="col-sm-9 text-secondary" />
@@ -86,7 +86,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label asp-for="Phone" class="mb-0"></label>
+                                        <label asp-for="Phone" class="mb-0">電話</label>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input asp-for="Phone" class="col-sm-9 text-secondary" />
@@ -96,7 +96,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label asp-for="Mobile" class="mb-0"></label>
+                                        <label asp-for="Mobile" class="mb-0">手機</label>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input asp-for="Mobile" class="col-sm-9 text-secondary" />
@@ -106,7 +106,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label asp-for="Address" class="mb-0"></label>
+                                        <label asp-for="Address" class="mb-0">地址</label>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input asp-for="Address" class="col-sm-9 text-secondary" />
@@ -116,7 +116,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <input type="submit" value="Save" class="btn btn-info" />
+                                        <input type="submit" value="存檔" class="btn btn-info" />
                                     </div>
                                 </div>
                             </form>
