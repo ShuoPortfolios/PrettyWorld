@@ -21,7 +21,7 @@ namespace PrettyWorld.Controllers
 
         public IActionResult Index(string id)
         {
-            id = "L124614391";
+            id = "L111111111";
 
             IQueryable<MyProfile> ProfileData = from _profileTable in _db.MyProfiles
                                                 where _profileTable.Id == id
