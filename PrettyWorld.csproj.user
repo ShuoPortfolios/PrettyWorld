@@ -11,6 +11,6 @@
     <WebStackScaffolding_DbContextTypeFullName>PrettyWorld.Models.PrettyWorldContext</WebStackScaffolding_DbContextTypeFullName>
     <Controller_SelectedScaffolderID>MvcControllerWithActionsScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Common/MVC/Controller</Controller_SelectedScaffolderCategoryPath>
-    <NameOfLastUsedPublishProfile>E:\001-Side Projects\ASP.NET Core\PrettyWorld\.github\workflows\azure-webapps-dotnet-core.yml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>FolderProfile1</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

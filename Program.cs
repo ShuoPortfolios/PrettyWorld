@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Load connection strings in appsettings.json
 var configurationBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
 IConfiguration config = configurationBuilder.Build();
-string DBconnectionString = config["ConnectionStrings:DefaultConnection"];
+string DBconnectionString = config["ConnectionStrings:AZURE_SQL_CONNECTIONSTRING"];
 builder.Services.AddDbContext<PrettyWorldContext>(options => options.UseSqlServer(DBconnectionString));
 
 // Add services to the container.

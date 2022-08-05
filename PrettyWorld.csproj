@@ -6,14 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-<PropertyGroup Condition=" '$(Configuration)' == '' Or '$(Configuration)' == 'Debug'">
-  <EnvironmentName>Development</EnvironmentName>
-</PropertyGroup>
-
-<PropertyGroup Condition=" '$(Configuration)' != '' AND '$(Configuration)' != 'Debug' ">
-  <EnvironmentName>Production</EnvironmentName>
-</PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Imgur.API" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
