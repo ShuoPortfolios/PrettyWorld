@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PrettyWorld.Models;
 using PrettyWorld.ViewModel;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace PrettyWorld.Controllers
 {
@@ -42,6 +43,28 @@ namespace PrettyWorld.Controllers
                       + "_"
                       + Guid.NewGuid().ToString().Substring(0, 4)
                       + Path.GetExtension(fileName);
+        }
+
+        private const string YoutubeLinkRegex = "(?:.+?)?(?:\\/v\\/|watch\\/|\\?v=|\\&v=|youtu\\.be\\/|\\/v=|^youtu\\.be\\/)([a-zA-Z0-9_-]{11})+";
+        private static Regex regexExtractId = new Regex(YoutubeLinkRegex, RegexOptions.Compiled);
+        private static string[] validAuthorities = { "youtube.com", "www.youtube.com", "youtu.be", "www.youtu.be" };
+
+        public string ExtractVideoIdFromUri(Uri uri)
+        {
+            string authority = new UriBuilder(uri).Uri.Authority.ToLower();
+
+            //check if the url is a youtube url
+            if (validAuthorities.Contains(authority))
+            {
+                //and extract the id
+                var regRes = regexExtractId.Match(uri.ToString());
+                if (regRes.Success)
+                {
+                    return regRes.Groups[1].Value;
+                }
+            }
+
+            return null;
         }
 
         // GET: MovieController
@@ -145,6 +168,13 @@ namespace PrettyWorld.Controllers
                 return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
             }
 
+            Uri myUri;
+            if (!string.IsNullOrEmpty(movieVM.Trailer))
+            {
+                myUri = new Uri(movieVM.Trailer!, UriKind.Absolute);
+                movieVM.Trailer = "https://www.youtube.com/embed/" + ExtractVideoIdFromUri(myUri);
+            }
+
             if (ModelState.IsValid)
             {
                 string stringFileName = UploadFile(movieVM);
@@ -243,6 +273,13 @@ namespace PrettyWorld.Controllers
                 return new StatusCodeResult((int)System.Net.HttpStatusCode.BadRequest);
             }
 
+            Uri myUri;
+            if (!string.IsNullOrEmpty(_movie.Trailer))
+            {
+                myUri = new Uri(_movie.Trailer!, UriKind.Absolute);
+                _movie.Trailer = "https://www.youtube.com/embed/" + ExtractVideoIdFromUri(myUri);
+            }
+
             ModelState.Remove("MovieName");
             ModelState.Remove("MoviePicture");
 
@@ -257,7 +294,7 @@ namespace PrettyWorld.Controllers
                     Trailer = _movie.Trailer,   
                     Director = _movie.Director, 
                     TopCast = _movie.TopCast,
-                    Review = _movie.Review.Replace("    ", "<br /><br />"),
+                    Review = _movie.Review,
                     Rating = _movie.Rating,
                     Plot = _movie.Plot, 
                     Scene = _movie.Scene,

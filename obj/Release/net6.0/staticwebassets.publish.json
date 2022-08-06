@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EGtixauO9saVWJp1qg58tc5aNBZYI0U5LIKYGXhm5/U=",
+  "Hash": "qdYYyJ/Z6CSFkoO1NSHjyIz0yVaZB+RGRgRZz2IUhxU=",
   "Source": "PrettyWorld",
   "BasePath": "_content/PrettyWorld",
   "Mode": "Default",
@@ -1086,6 +1086,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\MoviePictures\\37.jpg",
+      "SourceId": "PrettyWorld",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\",
+      "BasePath": "_content/PrettyWorld",
+      "RelativePath": "MoviePictures/37.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\MoviePictures\\37.jpg"
     },
     {
       "Identity": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\wwwroot\\MoviePictures\\小小兵2：格魯的崛起.jpg",

@@ -122,7 +122,10 @@
                     <div class="card mb-12">
                         <div class="card">
                             <div class="card-body">
-                                @Html.Raw(Model.Review!.Replace(Environment.NewLine, "<br/>"))
+                                @if (!string.IsNullOrEmpty(Model.Review))
+                                {
+                                    @Html.Raw(Model.Review!.Replace(Environment.NewLine, "<br/>"))
+                                }
                             </div>
                         </div>
                     </div>
