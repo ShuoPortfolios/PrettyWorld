@@ -1,5 +1,7 @@
 .NET Core 版本 6.0.302
 
+Demo - https://prettyworld.azurewebsites.net/
+
 【Side Project】個人部落格-影評撰寫(ASP.NET Core MVC)
 主題】
 
