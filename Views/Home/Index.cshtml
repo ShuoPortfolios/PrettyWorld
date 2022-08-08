@@ -27,8 +27,8 @@
                                     <h4>@Html.DisplayFor(model => model.FullName)</h4>
                                     <p class="text-secondary mb-1">@Html.DisplayFor(model => model.Introduction)</p>
                                     <p class="text-muted font-size-sm">@Html.DisplayFor(model => model.LiveIn)</p>
-                                    <button class="btn btn-primary">追蹤我</button>
-                                    <button class="btn btn-outline-primary">聯繫我</button>
+                                    <!--<button class="btn btn-primary">追蹤我</button>    施工中-->
+                                    <button class="btn btn-outline-primary" onclick="location.href='mailto:@Html.DisplayFor(model => model.Email)';">聯繫我</button>
                                 </div>
                             </div>
                         </div>
