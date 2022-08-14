@@ -9493,23 +9493,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jiyeo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\RuiSh\\.nuget\\packages\\": {},
+    "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\PrettyWorld.csproj",
+      "projectUniqueName": "D:\\Projects\\ASP.NET Core\\PrettyWorld\\PrettyWorld.csproj",
       "projectName": "PrettyWorld",
-      "projectPath": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\PrettyWorld.csproj",
-      "packagesPath": "C:\\Users\\jiyeo\\.nuget\\packages\\",
-      "outputPath": "E:\\001-Side Projects\\ASP.NET Core\\PrettyWorld\\obj\\",
+      "projectPath": "D:\\Projects\\ASP.NET Core\\PrettyWorld\\PrettyWorld.csproj",
+      "packagesPath": "C:\\Users\\RuiSh\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\ASP.NET Core\\PrettyWorld\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jiyeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\RuiSh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

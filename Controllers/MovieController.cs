@@ -172,7 +172,7 @@ namespace PrettyWorld.Controllers
             if (!string.IsNullOrEmpty(movieVM.Trailer))
             {
                 myUri = new Uri(movieVM.Trailer!, UriKind.Absolute);
-                movieVM.Trailer = "https://www.youtube.com/embed/" + ExtractVideoIdFromUri(myUri);
+                movieVM.Trailer = ExtractVideoIdFromUri(myUri);
             }
 
             if (ModelState.IsValid)
@@ -277,7 +277,7 @@ namespace PrettyWorld.Controllers
             if (!string.IsNullOrEmpty(_movie.Trailer))
             {
                 myUri = new Uri(_movie.Trailer!, UriKind.Absolute);
-                _movie.Trailer = "https://www.youtube.com/embed/" + ExtractVideoIdFromUri(myUri);
+                _movie.Trailer = ExtractVideoIdFromUri(myUri);
             }
 
             ModelState.Remove("MovieName");
