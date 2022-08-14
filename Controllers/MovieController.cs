@@ -171,8 +171,11 @@ namespace PrettyWorld.Controllers
             Uri myUri;
             if (!string.IsNullOrEmpty(movieVM.Trailer))
             {
-                myUri = new Uri(movieVM.Trailer!, UriKind.Absolute);
-                movieVM.Trailer = ExtractVideoIdFromUri(myUri);
+                if (Uri.IsWellFormedUriString(movieVM.Trailer!, UriKind.Absolute))
+                {
+                    myUri = new Uri(movieVM.Trailer!, UriKind.Absolute);
+                    movieVM.Trailer = ExtractVideoIdFromUri(myUri);
+                }
             }
 
             if (ModelState.IsValid)
@@ -276,8 +279,11 @@ namespace PrettyWorld.Controllers
             Uri myUri;
             if (!string.IsNullOrEmpty(_movie.Trailer))
             {
-                myUri = new Uri(_movie.Trailer!, UriKind.Absolute);
-                _movie.Trailer = ExtractVideoIdFromUri(myUri);
+                if(Uri.IsWellFormedUriString(_movie.Trailer!, UriKind.Absolute))
+                {
+                    myUri = new Uri(_movie.Trailer!, UriKind.Absolute);
+                    _movie.Trailer = ExtractVideoIdFromUri(myUri);
+                }           
             }
 
             ModelState.Remove("MovieName");

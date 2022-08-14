@@ -8,61 +8,61 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PrettyWorld
 build_property.RootNamespace = PrettyWorld
-build_property.ProjectDir = D:\Projects\ASP.NET Core\PrettyWorld\
+build_property.ProjectDir = E:\001-Side Projects\ASP.NET Core\PrettyWorld\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Projects\ASP.NET Core\PrettyWorld
+build_property.MSBuildProjectDirectory = E:\001-Side Projects\ASP.NET Core\PrettyWorld
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Home/Edit.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Home/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Home/Index.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Home/Privacy.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieCreate.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieCreate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieDelete.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieDelete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieDetails.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieEdit.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieList.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Movie/MovieList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcTW92aWVMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Shared/Error.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/_ViewImports.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/_ViewStart.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/ASP.NET Core/PrettyWorld/Views/Shared/_Layout.cshtml]
+[E:/001-Side Projects/ASP.NET Core/PrettyWorld/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-huc7379bb4
